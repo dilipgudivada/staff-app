@@ -1,9 +1,8 @@
 {
-  "name": "react-material-dashboard",
-  "author": "DeviasIO",
-  "licence": "MIT",
-  "version": "1.0.0",
-  "private": false,
+  "name": "staff-app",
+  "author": "dilip",
+  "version": "0.0.1",
+  "private":false,
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
