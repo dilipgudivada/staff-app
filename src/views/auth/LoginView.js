@@ -71,15 +71,15 @@ const LoginView = () => {
                   >
                     Sign in
                   </Typography>
-                  <Typography
+                  {/* <Typography
                     color="textSecondary"
                     gutterBottom
                     variant="body2"
                   >
                     Sign in on the internal platform
-                  </Typography>
+                  </Typography> */}
                 </Box>
-                <Grid
+                {/* <Grid
                   container
                   spacing={3}
                 >
@@ -114,7 +114,7 @@ const LoginView = () => {
                       Login with Google
                     </Button>
                   </Grid>
-                </Grid>
+                </Grid> */}
                 <Box
                   mt={3}
                   mb={1}
@@ -124,7 +124,7 @@ const LoginView = () => {
                     color="textSecondary"
                     variant="body1"
                   >
-                    or login with email address
+                   login with email address
                   </Typography>
                 </Box>
                 <TextField

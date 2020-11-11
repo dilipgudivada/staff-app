@@ -53,9 +53,11 @@ const TopBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <RouterLink to="/">
           <IconButton color="inherit">
             <InputIcon />
           </IconButton>
+          </RouterLink>
         </Hidden>
         <Hidden lgUp>
           <IconButton

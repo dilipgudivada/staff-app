@@ -33,7 +33,7 @@ const ProductList = () => {
       title="Products"
     >
       <Container maxWidth={false}>
-        <Toolbar />
+        {/* <Toolbar />
         <Box mt={3}>
           <Grid
             container
@@ -65,7 +65,8 @@ const ProductList = () => {
             count={3}
             size="small"
           />
-        </Box>
+        </Box> */}
+        Single activity in progress
       </Container>
     </Page>
   );

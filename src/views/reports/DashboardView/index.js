@@ -32,7 +32,7 @@ const Dashboard = () => {
       title="Dashboard"
     >
       <Container maxWidth={false}>
-        <Grid
+        {/* <Grid
           container
           spacing={3}
         >
@@ -108,7 +108,8 @@ const Dashboard = () => {
           >
             <LatestOrders />
           </Grid>
-        </Grid>
+        </Grid> */}
+        DashboardView in progess
       </Container>
     </Page>
   );

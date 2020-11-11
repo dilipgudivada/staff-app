@@ -25,7 +25,7 @@ const Account = () => {
       className={classes.root}
       title="Account"
     >
-      <Container maxWidth="lg">
+      {/* <Container maxWidth="lg">
         <Grid
           container
           spacing={3}
@@ -47,7 +47,8 @@ const Account = () => {
             <ProfileDetails />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
+      Go to report in progress
     </Page>
   );
 };

@@ -28,10 +28,11 @@ const CustomerListView = () => {
       title="Customers"
     >
       <Container maxWidth={false}>
-        <Toolbar />
+        {/* <Toolbar />
         <Box mt={3}>
           <Results customers={customers} />
-        </Box>
+        </Box> */}
+        Weekly report in progress
       </Container>
     </Page>
   );
