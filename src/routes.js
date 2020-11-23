@@ -10,16 +10,18 @@ import NotFoundView from 'src/views/errors/NotFoundView';
 import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
+import Report from 'src/containers/Report';
+import Timeactivity from 'src/containers/Timeactivity'
 
 const routes = [
   {
     path: 'app',
     element: <DashboardLayout />,
     children: [
-      { path: 'account', element: <AccountView /> },
+      { path: 'account', element: <Report/> },
       { path: 'customers', element: <CustomerListView /> },
       { path: 'dashboard', element: <DashboardView /> },
-      { path: 'products', element: <ProductListView /> },
+      { path: 'products', element: <Timeactivity /> },
       { path: 'settings', element: <SettingsView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]

@@ -39,9 +39,9 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/">
+        {/* <RouterLink to="/">
           <Logo />
-        </RouterLink>
+        </RouterLink> */}
         <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton color="inherit">
@@ -53,11 +53,11 @@ const TopBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <RouterLink to="/">
-          <IconButton color="inherit">
+          <IconButton 
+           onClick={onMobileNavOpen}                     
+           >
             <InputIcon />
           </IconButton>
-          </RouterLink>
         </Hidden>
         <Hidden lgUp>
           <IconButton
