@@ -10,7 +10,10 @@ import {
     Box
   } from '@material-ui/core';
 import Page from 'src/components/Page';
-import logo from '../images/reloadtime-circle-512.png'
+import logo from '../images/reloadtime-circle-512.png';
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +38,11 @@ const useStyles = makeStyles((theme) => ({
       top: '75px',
       width: '20px',
       height: '15px'
-    }
+    },
+    button: {
+      margin: theme.spacing(1),
+
+    },
 }));
 
 export default function Timeactivity(){
@@ -111,6 +118,15 @@ export default function Timeactivity(){
             </Grid>
             </Grid>
             </form>
+            <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        startIcon={<SaveIcon />}
+      >
+        Save
+      </Button>
         </Page>
     );
 }

@@ -1,15 +1,8 @@
 import React from 'react';
-//import { makeStyles } from '@material-ui/core/styles';
-//import Table from '@material-ui/core/Table';
-//import TableBody from '@material-ui/core/TableBody';
-//import TableCell from '@material-ui/core/TableCell';
-//import TableContainer from '@material-ui/core/TableContainer';
-//import TableHead from '@material-ui/core/TableHead';
-//import TableRow from '@material-ui/core/TableRow';
-//import Paper from '@material-ui/core/Paper';
 import Page from 'src/components/Page';
 import ReportData from './ReportData';
-//import Grid from '@material-ui/core/Grid';
+import { jsPDF } from "jspdf";
+import autoTable from 'jspdf-autotable'
 import {
   Divider,
   Typography,
@@ -23,12 +16,12 @@ import {
   Paper,
   Grid
 } from '@material-ui/core';
-import ImportExportIcon from '@material-ui/icons/ImportExport';
-import PrintIcon from '@material-ui/icons/Print';
-import EmailIcon from '@material-ui/icons/Email';
-import SettingsIcon from '@material-ui/icons/Settings';
+
 
 const useStyles = makeStyles({
+  root: {
+      margin: 5,
+    },
   table: {
     minWidth: 650,
   },
@@ -39,25 +32,46 @@ function createData(Activity, calories, fat, carbs, protein, Billable) {
   }
   
   const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Yes'),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 'Yes'),
-    createData('Eclair', 262, 16.0, 24, 6.0, 'Yes'),
-    createData('Cupcake', 305, 3.7, 67, 4.3, 'No'),
-    createData('Gingerbread', 356, 16.0, 49, 3.9, 'Yes'),
+    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 'student moduke', 4.0, 'Yes'),
+    createData('11/02/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 37, 4.3, 'Yes'),
+    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 24, 6.0, 'Yes'),
+    createData('11/03/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 'student moduke', 4.3, 'No'),
+    createData('11/02/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 49, 3.9, 'Yes'),
+    createData('11/05/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 49, 3.9, 'Yes'),
+    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 'student moduke', 3.9, 'Yes'),
   ];
   
   export default function Report() {
     const classes = useStyles();
-  
+    const exportAsPdf = () => {
+      var doc = new jsPDF();
+      autoTable(doc, { html: '#table-data' })
+      doc.save('table.pdf')
+    };
+    const printTable = () => {
+      var content = document.getElementById("table-data-container");
+      var pri = document.getElementById("ifmcontentstoprint").contentWindow;
+      pri.document.open();
+      console.log("content",content.innerHTML)
+      pri.document.write(content.innerHTML);
+      pri.document.close();
+      pri.focus();
+      pri.print();
+    };
     return (
       <Page
       className={classes.root}
       title="Report"
     >
+      <iframe id="ifmcontentstoprint" style={{height: '0px', width: '0px', position: 'absolute'}}></iframe>
+      <div id="test-test"></div>
       <Grid item xs={12}>
-      <ReportData/>
-      <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="simple table">
+      <ReportData 
+        exportAsPdf={exportAsPdf}
+        printTable={printTable}
+        />
+      <TableContainer component={Paper} id="table-data-container">
+        <Table className={classes.table} aria-label="simple table" id="table-data">
           <TableHead>
             <TableRow>
               <TableCell>Activity Date</TableCell>

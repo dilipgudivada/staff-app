@@ -40,21 +40,22 @@ const useStyles = makeStyles(() => ({
   exportList:{
     display:'flex',
     flexDirection: 'column',
-    backgroundColor: 'white',
-    border:'1px solid',
+    backgroundColor: '#f4f6f8',
     justifyContent: 'space-around',
-    height:'50px'
-  }
+    height:'50px',
+    border: '1px solid #d2d1d1',
+    borderRadius: '3px',
+  },
+  exportListItem:{
+    backgroundColor: '#ffffff',
+    cursor: 'pointer',
+
+  },
 }));
 
-const ReportData = ({ className, ...rest }) => {
+const ReportData = ({ className, exportAsPdf, printTable, ...rest }) => {
   const classes = useStyles();
-  const [exportIconOpen, setExportIconOpen] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const exportIconClick = () => {
-    console.log('onClick');
-    setExportIconOpen(!exportIconOpen);
-  };
   const anchorElHandleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
   };
@@ -66,16 +67,15 @@ const ReportData = ({ className, ...rest }) => {
           <div className={classes.iconHeader}>
             <div className={classes.headIcons}>
               <EmailIcon/>
-              <PrintIcon/>
+              <PrintIcon onClick={printTable}/>
               <ImportExportIcon onClick={anchorElHandleClick}/>
-              <SettingsIcon/>  
             </div> 
           </div>
           <Divider/>
           <Popper id={id} open={open} anchorEl={anchorEl}>
             <div className={classes.exportList}>
-              <span>Export as Excel</span>
-              <span>Export as PDF</span>
+              <span className={classes.exportListItem} >Export as Excel</span>
+              <span className={classes.exportListItem} onClick = {exportAsPdf}>Export as PDF</span>
             </div>
           </Popper>
         </Grid>
@@ -100,9 +100,15 @@ const ReportData = ({ className, ...rest }) => {
             color="textSecondary"
             variant="body1"
           >
-            Activity:{`${moment().format('mm dd yyyy')}`}
+            Activity:{`${moment().format(' MMMM Do YYYY')}`}
           </Typography>
         </Box>
+        <Typography
+            color="textSecondary"
+            variant="body1"
+          >
+            Empolyee Name: Dilip Gudivada
+          </Typography>
      </div>
       <Divider />
     {/* </Card> */}
