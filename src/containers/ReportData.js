@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { CSVLink } from "react-csv";
 import moment from 'moment';
 import {
   Avatar,
@@ -17,8 +17,6 @@ import {
 } from '@material-ui/core';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import PrintIcon from '@material-ui/icons/Print'
-import EmailIcon from '@material-ui/icons/Email';
-import SettingsIcon from '@material-ui/icons/Settings';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -35,7 +33,8 @@ const useStyles = makeStyles(() => ({
     float:'right',
     width:'150px',
     display:'flex',
-    justifyContent: 'space-around' 
+    justifyContent: 'space-around',
+    marginRight: '20px'
   },
   exportList:{
     display:'flex',
@@ -45,15 +44,21 @@ const useStyles = makeStyles(() => ({
     height:'50px',
     border: '1px solid #d2d1d1',
     borderRadius: '3px',
+    width: '130px',
+    textAlign: 'center'
   },
   exportListItem:{
     backgroundColor: '#ffffff',
     cursor: 'pointer',
-
+    color: 'black',
+    '&:hover': {
+      background: '#3f51b5',
+      color: '#ffffff'
+    }
   },
 }));
 
-const ReportData = ({ className, exportAsPdf, printTable, ...rest }) => {
+const ReportData = ({ exportAsPdf, printTable, data, headers}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const anchorElHandleClick = (event) => {
@@ -66,15 +71,16 @@ const ReportData = ({ className, exportAsPdf, printTable, ...rest }) => {
         <Grid item xs={12}>
           <div className={classes.iconHeader}>
             <div className={classes.headIcons}>
-              <EmailIcon/>
-              <PrintIcon onClick={printTable}/>
               <ImportExportIcon onClick={anchorElHandleClick}/>
+              <PrintIcon onClick={printTable}/>
             </div> 
           </div>
           <Divider/>
           <Popper id={id} open={open} anchorEl={anchorEl}>
             <div className={classes.exportList}>
-              <span className={classes.exportListItem} >Export as Excel</span>
+              <CSVLink className={classes.exportListItem} data={data} headers={headers}>
+                <span >Export as CSV</span>
+              </CSVLink>
               <span className={classes.exportListItem} onClick = {exportAsPdf}>Export as PDF</span>
             </div>
           </Popper>

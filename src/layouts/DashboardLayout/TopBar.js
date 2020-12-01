@@ -20,7 +20,7 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Changepassword from '../../components/ChangePassword';
+// import Changepassword from '../../components/ChangePassword';
 import Modal from '@material-ui/core/Modal';
 import Logo from 'src/components/Logo';
 import { blue } from '@material-ui/core/colors';

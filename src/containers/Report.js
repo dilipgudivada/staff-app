@@ -20,25 +20,41 @@ import {
 
 const useStyles = makeStyles({
   root: {
-      margin: 5,
-    },
+    margin: 5,
+  },
   table: {
     minWidth: 650,
   },
 });
 
-function createData(Activity, calories, fat, carbs, protein, Billable) {
-    return { Activity, calories, fat, carbs, protein, Billable };
-  }
+// function createData(Activity, calories, fat, carbs, protein, Billable) {
+//     return { Activity, calories, fat, carbs, protein, Billable };
+//   }
   
+  // const rows = [
+  //   createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Yes'),
+  //   createData('Ice cream sandwich', 237, 9.0, 37, 4.3, 'Yes'),
+  //   createData('Eclair', 262, 16.0, 24, 6.0, 'Yes'),
+  //   createData('Cupcake', 305, 3.7, 67, 4.3, 'No'),
+  //   createData('Gingerbread', 356, 16.0, 49, 3.9, 'Yes'),
+  // ];
+  const headers = [
+    { label: "Activity Date", key: "activity" },
+    { label: "Customer", key: "calories" },
+    { label: "Product", key: "fat" },
+    { label: "Memo", key: "carbs" },
+    { label: "Duration", key: "protein" },
+    { label: "Billable", key: "billable" }
+  ];
+
   const rows = [
-    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 'student moduke', 4.0, 'Yes'),
-    createData('11/02/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 37, 4.3, 'Yes'),
-    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 24, 6.0, 'Yes'),
-    createData('11/03/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 'student moduke', 4.3, 'No'),
-    createData('11/02/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 49, 3.9, 'Yes'),
-    createData('11/05/2020', 'Cosmas Majachani', 'Off-Shore:No of Hours Worked', 49, 3.9, 'Yes'),
-    createData('11/01/2020', 'Cosmas Majachani', 'Off-Shore:UI Services', 'student moduke', 3.9, 'Yes'),
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:No of Hours Worked', carbs: 'student moduke', protein: 4.0, billable: 'Yes'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:UI Services', carbs: 'student moduke', protein: 6.0, billable: 'Yes'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:No of Hours Worked', carbs: 'student moduke', protein: 9.0, billable: 'No'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:UI Services', carbs: 'student moduke', protein: 3.0, billable: 'Yes'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:UI Services', carbs: 'student moduke', protein: 7.0, billable: 'No'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:UI Services', carbs: 'student moduke', protein: 7.0, billable: 'No'},
+    {activity: '11/01/2020', calories: 'Cosmas Majachani', fat: 'Off-Shore:UI Services', carbs: 'student moduke', protein: 7.0, billable: 'No'},
   ];
   
   export default function Report() {
@@ -69,6 +85,8 @@ function createData(Activity, calories, fat, carbs, protein, Billable) {
       <ReportData 
         exportAsPdf={exportAsPdf}
         printTable={printTable}
+        headers={headers}
+        data={rows}
         />
       <TableContainer component={Paper} id="table-data-container">
         <Table className={classes.table} aria-label="simple table" id="table-data">
@@ -84,15 +102,15 @@ function createData(Activity, calories, fat, carbs, protein, Billable) {
           </TableHead>
           <TableBody>
             {rows.map((row) => (
-              <TableRow key={row.Activity}>
+              <TableRow key={row.activity}>
                 <TableCell component="th" scope="row">
-                  {row.Activity}
+                  {row.activity}
                 </TableCell>
                 <TableCell align="right">{row.calories}</TableCell>
                 <TableCell align="right">{row.fat}</TableCell>
                 <TableCell align="right">{row.carbs}</TableCell>
                 <TableCell align="right">{row.protein}</TableCell>
-                <TableCell align="right">{row.Billable}</TableCell>
+                <TableCell align="right">{row.billable}</TableCell>
               </TableRow>
             ))}
           </TableBody>
