@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   },
   headIcons: {
     float:'right',
-    width:'150px',
+    width:'100px',
     display:'flex',
     justifyContent: 'space-around',
     marginRight: '20px'
@@ -106,15 +106,9 @@ const ReportData = ({ exportAsPdf, printTable, data, headers}) => {
             color="textSecondary"
             variant="body1"
           >
-            Activity:{`${moment().format(' MMMM Do YYYY')}`}
+            Activity:{`${moment().format('mm dd yyyy')}`}
           </Typography>
         </Box>
-        <Typography
-            color="textSecondary"
-            variant="body1"
-          >
-            Empolyee Name: Dilip Gudivada
-          </Typography>
      </div>
       <Divider />
     {/* </Card> */}

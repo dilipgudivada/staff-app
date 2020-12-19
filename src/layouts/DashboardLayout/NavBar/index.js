@@ -51,11 +51,16 @@ const items = [
     icon: UserIcon,
     title: 'Go to report'
   },
-  // {
-  //   href: '/app/settings',
-  //   icon: SettingsIcon,
-  //   title: 'Settings'
-  // },
+  {
+    href: '/app/Ticketactivity',
+    icon: UserPlusIcon,
+    title: 'Ticketactivity'
+  },
+  {
+    href: '/app/settings',
+    icon: SettingsIcon,
+    title: 'Settings'
+  },
   // {
   //   href: '/login',
   //   icon: LockIcon,
