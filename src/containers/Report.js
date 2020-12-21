@@ -24,7 +24,7 @@ const headers = [
   { label: "Product", key: "service_name" },
   { label: "Memo", key: "description" },
   { label: "Duration", key: "time" },
-  { label: "Billable", key: "billable" }
+  { label: "Billable", key: "billable" },
 ];
 
 export default function Report() {
