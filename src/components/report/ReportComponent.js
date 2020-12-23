@@ -7,6 +7,7 @@ import {
   Divider,
   Typography,
   makeStyles,
+  withStyles,
   Grid,
   Popper,
   Table,
@@ -22,6 +23,16 @@ import PrintIcon from "@material-ui/icons/Print";
 import { reportStyle } from "./ReportStyle";
 
 const useStyles = makeStyles(() => reportStyle);
+const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: theme.palette.primary.dark,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
 
 const ReportData = ({ exportAsPdf, printTable, data, headers }) => {
   const classes = useStyles();
@@ -89,12 +100,12 @@ const ReportData = ({ exportAsPdf, printTable, data, headers }) => {
         >
           <TableHead>
             <TableRow>
-              <TableCell>Activity Date</TableCell>
-              <TableCell align="right">Customer</TableCell>
-              <TableCell align="right">Product</TableCell>
-              <TableCell align="right">Memo</TableCell>
-              <TableCell align="right">Duration</TableCell>
-              <TableCell align="right">Billable</TableCell>
+              <StyledTableCell>Activity Date</StyledTableCell>
+              <StyledTableCell align="right">Customer</StyledTableCell>
+              <StyledTableCell align="right">Product</StyledTableCell>
+              <StyledTableCell align="right">Memo</StyledTableCell>
+              <StyledTableCell align="right">Duration</StyledTableCell>
+              <StyledTableCell align="right">Billable</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -107,7 +118,7 @@ const ReportData = ({ exportAsPdf, printTable, data, headers }) => {
                 <TableCell align="right">{row.service_name}</TableCell>
                 <TableCell align="right">{row.description}</TableCell>
                 <TableCell align="right">{row.time}</TableCell>
-                <TableCell align="right">{row.billable}</TableCell>
+                <TableCell align="right">{row.billable == 1? "True":"False"}</TableCell>
               </TableRow>
             ))}
           </TableBody>
