@@ -12,6 +12,8 @@ import {
   FormControl,
   InputLabel
 } from "@material-ui/core";
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import Page from "src/components/Page";
 import logo from "../../images/reloadtime-circle-512.png";
 import Button from "@material-ui/core/Button";
@@ -32,13 +34,30 @@ export default function Timeactivity(props) {
   const timeactivityData = (e) => {
     e.preventDefault();
     const data = new FormData(e.target)
+    console.log("dat",data);
     axios
       .post("http://localhost:5000/api/timeactivity", user)
       .then(function(response) {
-        console.log(response);
+        toast.success(response.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       })
       .catch(function(error) {
-        console.log(error);
+        toast.error('Error', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       });
   };
 
@@ -95,6 +114,7 @@ export default function Timeactivity(props) {
         <TextField
             fullWidth
             label="Date"
+            required
             margin="normal"
             name="date"
             onChange={e => setUser({ ...user, date: e.target.value })}
@@ -113,6 +133,7 @@ export default function Timeactivity(props) {
             label="Name"
             margin="normal"
             name="name"
+            required
             onChange={e => setUser({ ...user, name: e.target.value })}
             type="text"
             value={user && user.name ? user.name : 'DilipGudivada'}
@@ -122,15 +143,13 @@ export default function Timeactivity(props) {
             }}
           />
           </Grid>
-
-
-        
-            <Grid xs={10}>
+<Grid xs={10}>
           <TextField
             fullWidth
             label="Time"
             margin="normal"
             name="time"
+            required
             onChange={e => setUser({ ...user, time: e.target.value })}
             type="text"
             value={user && user.time ? user.time : ''}
@@ -147,6 +166,8 @@ export default function Timeactivity(props) {
                 rows={10}
                 label="Description"
                 name="description" 
+                margin="normal"
+                required
                 onChange={e => setUser({ ...user, description: e.target.value })} 
                 variant="outlined"
                 InputLabelProps={{
@@ -156,13 +177,15 @@ export default function Timeactivity(props) {
               />
             </Grid>
        
-            <Grid xs={10}>`
+            <Grid xs={10}>
             
             <FormControl variant="outlined" fullWidth >
             <InputLabel id="role-select-outlined-label" > Customer Name </InputLabel>
             <Select style={{ textAlign: 'left' }}
                             fullWidth
                             label="Customer Name"
+                            required
+                            native
                             inputProps={
                                 {
                                     shrink: true,
@@ -170,22 +193,26 @@ export default function Timeactivity(props) {
                             }
                             placeholder="Select Customer"
                             variant="outlined"
+                            margin="normal"
                             name="customer"
+                            className={classes.inputFieldStyle}
                             onChange={e => setUser({ ...user, customer_name: e.target.value })} 
                             value={user && user.customer_name ? user.customer_name: ''}
                         >
-                                        <option value="">None</option>
+                       <option aria-label="None" value="" />
               {customerData.map((row) => (
               <option value={row.customer_name}>{row.customer_name}</option>))}
                         </Select>
                         </FormControl>
             </Grid>
             <Grid xs={10}>
-            <FormControl variant="outlined" fullWidth >
+            <FormControl variant="outlined" className={classes.formControl} fullWidth >
             <InputLabel id="role-select-outlined-label" > Service </InputLabel>
-            <Select style={{ textAlign: 'left' }}
+            <Select
                             fullWidth
                             label="Service"
+                            native
+                            required
                             inputProps={
                                 {
                                     shrink: true,
@@ -194,10 +221,11 @@ export default function Timeactivity(props) {
                             placeholder="Select Service"
                             variant="outlined"
                             name="service"
+                            className={classes.inputFieldStyle}
                             onChange={e => setUser({ ...user, service_name: e.target.value })} 
                             value={user && user.service_name ? user.service_name: ''}
                         >
-                                        <option value="">None</option>
+                       <option aria-label="None" value="" />
               {serviceData.map((row) => (
               <option value={row.service_name}>{row.service_name}</option>))}
                         </Select>
@@ -226,6 +254,16 @@ export default function Timeactivity(props) {
       >
         Save
       </Button>
+      <ToastContainer
+      position="top-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover/>
       </form>
     </Page>
   );

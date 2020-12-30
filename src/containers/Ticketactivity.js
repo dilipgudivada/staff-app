@@ -88,10 +88,10 @@ const Ticketactivity = () => {
               <TableRow>
                 <StyledTableCell align="right"></StyledTableCell>
                 <StyledTableCell align="left"> Ticket_id</StyledTableCell>
-                <StyledTableCell align="right">AssignedTo</StyledTableCell>
-                <StyledTableCell align="right">Date</StyledTableCell>
-                <StyledTableCell align="right">Status</StyledTableCell>
-                <StyledTableCell align="right"></StyledTableCell>
+                <StyledTableCell align="left">AssignedTo</StyledTableCell>
+                <StyledTableCell align="left">Date</StyledTableCell>
+                <StyledTableCell align="left">Status</StyledTableCell>
+                <StyledTableCell align="center"></StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>

@@ -1,6 +1,7 @@
 import {
   GET_ROW_FILTER,
   UPDATE_TICKET_ROW_DATA,
+  CREATE_TICKET_ROW_DATA,
   GET_TICKET_ACTIVITY_DATA,
   GET_TICKET_DATA_SUCCESS,
   GET_TICKET_DATA_FAILURE,
@@ -20,12 +21,30 @@ export const getRowFilterToEdit = (rowId) => {
 };
 export const updateTicketRowData = (updatedRow) => {
   return (dispatch) => {
+    console.log("updatedRow",updatedRow)
     return Axios.put(
       `http://localhost:5000/ticket/${updatedRow.ticket_id}/`,
       updatedRow
     )
       .then(function(response) {
         dispatch({ type: UPDATE_TICKET_ROW_DATA, updatedRow });
+        //setTicketRowData(response.data.result);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+};
+
+export const createTicketRowData = (updatedRow) => {
+  return (dispatch) => {
+    console.log("updatedRow",updatedRow)
+    return Axios.post(
+      `http://localhost:5000/ticket`,
+      updatedRow
+    )
+      .then(function(response) {
+        dispatch({ type: CREATE_TICKET_ROW_DATA, updatedRow });
         //setTicketRowData(response.data.result);
       })
       .catch(function(error) {
